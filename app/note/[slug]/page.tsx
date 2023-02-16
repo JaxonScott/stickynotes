@@ -1,10 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { NoteType } from "../../types/Note";
+import { NotesTypes } from "../../types/Notes";
 import axios from "axios";
 import Notes from "../../components/Notes";
 import AddComment from "../../components/AddComment";
+import Comment from "../../components/Comment";
 
 type URL = {
   params: {
@@ -18,7 +19,7 @@ const fetchDetails = async (slug: string) => {
 };
 
 export default function NoteDetails(url: URL) {
-  const { data, isLoading } = useQuery<NoteType>({
+  const { data, isLoading } = useQuery<NotesTypes>({
     queryFn: () => fetchDetails(url.params.slug),
     queryKey: ["note-details"],
   });
@@ -34,6 +35,20 @@ export default function NoteDetails(url: URL) {
         userId={data?.user.id}
       />
       <AddComment id={data?.id || ""} />
+      <div>
+        <h1>Comments</h1>
+        <div>
+          {data?.comments.map((i) => (
+            <Comment
+              comment={i.comment}
+              id={i.id}
+              name={i.user.name}
+              avatar={i.user.image}
+              date={i.createdAt || ""}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

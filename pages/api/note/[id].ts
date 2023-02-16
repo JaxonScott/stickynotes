@@ -13,6 +13,14 @@ export default async function handler(
         },
         include: {
           user: true,
+          comments: {
+            orderBy: {
+              createdAt: "desc",
+            },
+            include: {
+              user: true,
+            },
+          },
         },
       });
       res.status(200).send(data);

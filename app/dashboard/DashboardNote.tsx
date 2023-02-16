@@ -2,11 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import DeleteNoteBtn from "./DeleteNoteBtn";
 
-export default function DashboardNote({ avatar, noteTitle, date, name, id }) {
+type Props = {
+  avatar: string;
+  noteTitle: string;
+  date: string;
+  name: string;
+  id: string;
+};
+
+export default function DashboardNote({
+  avatar,
+  noteTitle,
+  date,
+  name,
+  id,
+}: Props) {
   return (
     <div className="flex flex-col bg-white p-8 rounded-md mt-4">
       <div>
-        <Link href={"/"} className="flex gap-2">
+        <Link href={`/note/${id}`} className="flex gap-2">
           <Image
             src={avatar}
             alt=""

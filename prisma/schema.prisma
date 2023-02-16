@@ -58,6 +58,7 @@ model Note {
   userId    String
   user      User      @relation(fields: [userId], references: [id])
   comments  Comment[]
+  likes     Like[]
 }
 
 model Comment {
@@ -69,6 +70,13 @@ model Comment {
   user      User     @relation(fields: [userId], references: [id])
   noteId    String
   note      Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id     String @id @default(uuid())
+  count  Int    @default(0)
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id])
 }
 
 model VerificationToken {

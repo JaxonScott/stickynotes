@@ -11,7 +11,7 @@ export default function AddNote() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   let toastNoteId: string;
-
+  const queryClient = useQueryClient();
   const { mutate } = useMutation(
     async (title: string) => await axios.post("/api/notes/addNote", { title }),
     {
@@ -26,6 +26,7 @@ export default function AddNote() {
         setIsDisabled(false);
         toast.success("your post was created 🎉", { id: toastNoteId });
         console.log(data);
+        queryClient.invalidateQueries(["notes"]);
       },
     }
   );

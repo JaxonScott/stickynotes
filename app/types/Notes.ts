@@ -1,15 +1,24 @@
-export type NotesType = {
-  title: string;
+export type NotesTypes = {
   id: string;
-  createdAt: string;
-  comments?: {
-    createdAt: string;
-    id: string;
-    noteId: string;
-    userId: string;
-  }[];
+  title: string;
+  updatedAt?: string;
   user: {
-    name: string;
+    email: string;
+    id: string;
     image: string;
+    name: string;
   };
+  comments: {
+    createdAt?: string;
+    id: string;
+    postId: string;
+    comment: string;
+    userId: string;
+    user: {
+      email: string;
+      id: string;
+      image: string;
+      name: string;
+    };
+  }[];
 };
