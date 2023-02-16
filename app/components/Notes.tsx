@@ -7,7 +7,7 @@ export default function Notes({ avatar, name, noteTitle, id, userId }) {
   return (
     <div className="flex flex-col bg-white p-8 rounded-md mt-4">
       <div>
-        <Link href={`/user/${userId}`} className="flex gap-2">
+        <Link href={`/note/${id}`} className="flex gap-2">
           <Image
             src={avatar}
             alt=""
