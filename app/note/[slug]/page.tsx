@@ -36,7 +36,7 @@ export default function NoteDetails(url: URL) {
       />
       <AddComment id={data?.id || ""} />
       <div>
-        <h1>Comments</h1>
+        <h1>{data?.comments.length} Comment's</h1>
         <div>
           {data?.comments.map((i) => (
             <Comment

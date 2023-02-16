@@ -19,6 +19,7 @@ export default function DashBoardNotes() {
   console.log(data);
   return (
     <div>
+      <h1 className="text-xl font-semibold my-4">Heres your notes {data?.name}:</h1>
       {data?.notes.map((i) => (
         <DashboardNote
           avatar={data.image}
